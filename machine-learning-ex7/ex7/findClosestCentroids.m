@@ -21,10 +21,21 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+n = size(X, 1);
 
-
-
-
+for i=1:n
+  cmin = inf;
+  cidx = 0;
+  for j=1:K
+    t = (centroids(j, :) .- X(i, :));
+    mean = t * t';
+    if (mean < cmin)
+      cmin = mean;
+      cidx = j;
+    end
+  end
+  idx(i) = cidx;
+end
 
 
 % =============================================================
